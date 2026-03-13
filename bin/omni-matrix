@@ -1,0 +1,49 @@
+#!/bin/bash
+# OmniPresence: Agent Matrix - Command Interface
+# Architect: @wh1ko
+# Version: 1.0.0 (Founders Edition)
+
+SCRIPT_DIR="$HOME/.openclaw/scripts"
+LOG_DIR="$HOME/.openclaw/logs"
+
+show_help() {
+    echo "全域矩阵 OmniPresence: Agent Matrix"
+    echo ""
+    echo "用法: omni-matrix [命令]"
+    echo ""
+    echo "命令:"
+    echo "  --init       部署矩阵神经元"
+    echo "  --status     查看全员心跳日志"
+    echo "  --sync       立即强制全域同步"
+    echo "  --purge      触发 1MB 日志自净"
+    echo "  --help       显示帮助"
+    echo ""
+    echo "Architect: @wh1ko"
+}
+
+case "$1" in
+    --init)
+        echo "🚀 正在部署矩阵神经元..."
+        bash "$SCRIPT_DIR/matrix-init.sh"
+        ;;
+    --status)
+        echo "📡 矩阵状态巡检..."
+        bash "$SCRIPT_DIR/matrix-status.sh"
+        ;;
+    --sync)
+        echo "⚡ 发起强制全域同步..."
+        bash "$SCRIPT_DIR/matrix-sync.sh"
+        ;;
+    --purge)
+        echo "🧹 触发矩阵自净..."
+        bash "$SCRIPT_DIR/matrix-purge.sh"
+        ;;
+    --help|-h|"")
+        show_help
+        ;;
+    *)
+        echo "❌ 未知命令: $1"
+        echo "使用 'omni-matrix --help' 查看帮助"
+        exit 1
+        ;;
+esac
